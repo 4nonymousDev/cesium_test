@@ -56,8 +56,8 @@ viewer.screenSpaceEventHandler.setInputAction(function (e) {
     var position = viewer.scene.pickPosition(e.position)
     var feature = viewer.scene.pick(e.position);
     console.log(feature);
-    var popup = new Popup("zz")
-    console.log(popup.getPosition());
+    var popup = new Popup(feature.primitive.position, viewer)
+    popup.initDOM()
 
 }, Cesium.ScreenSpaceEventType.LEFT_CLICK);
 
