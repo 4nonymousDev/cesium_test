@@ -4,7 +4,7 @@ npm i
 
 npm run start
 
-open broswer
+open browser
 
 enter localhost:8080
 
