@@ -56,19 +56,7 @@ var poiEntity = viewer.entities.add({
 var poiClickHandler = new Cesium.ScreenSpaceEventHandler(viewer.scene.canvas)
 var popup = null
 poiClickHandler.setInputAction(function (click) {
-    var earthPosition1 = viewer.camera.pickEllipsoid(
-        click.position,
-        viewer.scene.globe.ellipsoid
-    );
-    var cartographic1 = Cesium.Cartographic.fromCartesian(
-        earthPosition1,
-        viewer.scene.globe.ellipsoid,
-        new Cesium.Cartographic()
-    );
-    var lat = Cesium.Math.toDegrees(cartographic1.latitude);
-    var lng = Cesium.Math.toDegrees(cartographic1.longitude);
-    var height = viewer.camera.positionCartographic.height;
-    console.log(lat, lng);
+
 
 
 
@@ -81,12 +69,6 @@ poiClickHandler.setInputAction(function (click) {
         var cartesian = viewer.scene.globe.pick(viewer.camera.getPickRay(pick), viewer.scene);
 
         var pick = viewer.scene.pick(click.position);
-        // 获取点的经纬度
-        var cartographic = Cesium.Cartographic.fromCartesian(pick.primitive._actualPosition);
-        // 转换为数组，0经度，1纬度
-        var point = [cartographic.longitude / Math.PI * 180, cartographic.latitude / Math.PI * 180];
-        // 转换为Cartesian3
-        var destination = Cesium.Cartesian3.fromDegrees(point[0], point[1], viewer.camera.positionCartographic.height);
 
 
         viewer.flyTo(poiEntity, {
@@ -104,7 +86,7 @@ poiClickHandler.setInputAction(function (click) {
             }
             popup = new Popup({
                 viewer: viewer,
-                geometry: cartesian
+                geometry: pick.primitive._actualPosition
             })
 
             popup.initBillboard()
@@ -123,7 +105,7 @@ poiClickHandler.setInputAction(function (click) {
 
 
 
-
+// 添加10000个可编辑点数据
 
 function getInstances() {
 

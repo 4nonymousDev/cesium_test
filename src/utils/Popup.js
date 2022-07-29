@@ -41,7 +41,7 @@ export class Popup {
         var position = Cesium.SceneTransforms.wgs84ToWindowCoordinates(this.viewer.scene, geometry)
         this.billboard.style.left = position.x - this.billboard.offsetWidth / 2 + 'px'
 
-        this.billboard.style.top = position.y - this.billboard.offsetHeight - 10 + 'px'
+        this.billboard.style.top = position.y - this.billboard.offsetHeight - 40 + 'px'
     }
 
     remove = (element) => {
